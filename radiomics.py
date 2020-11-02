@@ -33,7 +33,7 @@ class Radiomics:
         # split the data, creating a group of training/validation sets to be used in the k-fold validation process:
         self.kfold = model_selection.KFold(n_splits=self.NUM_FOLDS, random_state=self.randomSeed)
 
-        self.classifier = XGBClassifier(random_state=self.randomSeed)
+        self.classifier = XGBClassifier(random_state=self.randomSeed, learning_rate=0.001, n_estimators=5)
 
     def __len__(self):
         """
