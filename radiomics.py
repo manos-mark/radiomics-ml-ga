@@ -7,11 +7,8 @@ from pandas import read_csv
 from sklearn import model_selection
 from sklearn.preprocessing import MinMaxScaler
 from xgboost import XGBClassifier
-from sklearn.ensemble import AdaBoostClassifier
 
-import radiomics
-
-class Radiomics:
+class Radiomics_XGBoost:
     """This class encapsulates the Friedman1 test for a regressor
     """
 
@@ -35,7 +32,7 @@ class Radiomics:
         # split the data, creating a group of training/validation sets to be used in the k-fold validation process:
         self.kfold = model_selection.KFold(n_splits=self.NUM_FOLDS, random_state=self.randomSeed)
 
-        self.classifier = AdaBoostClassifier(random_state=self.randomSeed)
+        self.classifier = XGBClassifier(random_state=self.randomSeed, learning_rate=0.05, n_estimators=50)
 
     def __len__(self):
         """
